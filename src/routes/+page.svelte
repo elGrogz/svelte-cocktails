@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let ingredientsList: any;
-	let cocktailList: any;
+	let ingredientsList: any[] = [];
+	let cocktailList: any[] = [];
 
 	onMount(() => {
 		console.log('mounted');
@@ -21,11 +21,18 @@
 	}
 
 	const getIngredients = async () => {
-		console.log('Getting ingredients');
-		debugger;
+		try {
+			console.log('Getting ingredients');
 
-		const ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
-		ingredientsList = await ingredients.json();
+			const ingredientsResponse = await fetch(
+				'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+			);
+			const ingredientsObject = await ingredientsResponse.json();
+			debugger;
+			ingredientsList = ingredientsObject.drinks;
+		} catch (error) {
+			throw new Error('Error getting ingredients list');
+		}
 	};
 
 	function getCocktails() {
@@ -38,6 +45,40 @@
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 <button on:click={getCocktails}>Get Cocktails</button>
+<form>
+	List of ingredients
+	<select>
+		{#each ingredientsList as ingredient}
+			<option value={ingredient}>{ingredient.strIngredient1}</option>
+		{/each}
+	</select>
+</form>
 <pre>{cocktailList}</pre>
 
 <styles />
+
+<!-- {
+	"drinks": [
+	  {
+		"strIngredient1": "Light rum"
+	  },
+	  {
+		"strIngredient1": "Applejack"
+	  },
+	  {
+		"strIngredient1": "Gin"
+	  },
+	  {
+		"strIngredient1": "Dark rum"
+	  },
+	  {
+		"strIngredient1": "Sweet Vermouth"
+	  },
+	  {
+		"strIngredient1": "Strawberry schnapps"
+	  },
+	  {
+		"strIngredient1": "Scotch"
+	  },
+	]
+  } -->
