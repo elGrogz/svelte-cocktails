@@ -15,7 +15,8 @@
 
 	function getCocktails() {
 		console.log('Mixing a cocktail');
-		// cocktailList = cocktailList + 'hello';
+
+		fetch();
 	}
 </script>
 
