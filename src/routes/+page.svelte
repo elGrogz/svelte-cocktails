@@ -17,18 +17,6 @@
 		console.table(selectedIngredients);
 	}
 
-	// $: {
-	// 	console.log(
-	// 		`Reactive statement is running because the cocktailList changed. This runs after the other script code has finished and before the HTML code`
-	// 	);
-	// }
-
-	// $: {
-	// 	console.log(
-	// 		`Reactive statement is running because the ingredientsList changed. This runs after the other script code has finished and before the HTML code`
-	// 	);
-	// }
-
 	const getIngredients = async () => {
 		try {
 			console.log('Getting ingredients');
@@ -37,29 +25,34 @@
 				'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 			);
 			const ingredientsObject = await ingredientsResponse.json();
-			debugger;
 			ingredientsList = ingredientsObject.drinks;
 		} catch (error) {
 			throw new Error('Error getting ingredients list');
 		}
 	};
 
-	function getCocktails() {
-		console.log('Mixing a cocktail');
+	const getCocktails = async () => {
+		try {
+			console.log('Mixing a cocktail');
 
-		// fetch();
-	}
+			const cocktailsResponse = await fetch(
+				`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${selectedIngredients}`
+			);
+			debugger;
+			const cocktailObject = await cocktailsResponse.json();
+			cocktailList = cocktailObject.drinks;
+		} catch (error) {
+			throw new Error('Error getting ingredients list');
+		}
+	};
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<button on:click={getCocktails}>Get Cocktails</button>
 <form>
 	List of ingredients
 	<select multiple bind:value={selectedIngredients}>
 		{#each ingredientsList as ingredient}
 			<option
-				value={ingredient}
+				value={ingredient.strIngredient1}
 				on:click={() => {
 					console.log('clicked: ' + ingredient.strIngredient1);
 				}}>{ingredient.strIngredient1}</option
@@ -67,6 +60,7 @@
 		{/each}
 	</select>
 </form>
+<button on:click={getCocktails}>Get Cocktails</button>
 <pre>{cocktailList}</pre>
 
 <styles />
