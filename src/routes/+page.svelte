@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let ingredientsList: any[] = [];
+	let ingredientsList: Drink[] = [];
 	let cocktailList: any[] = [];
+	let selectedIngredients: string[] = [];
+
+	interface Drink {
+		strIngredient1: string;
+	}
 
 	onMount(() => {
 		console.log('mounted');
@@ -9,16 +14,20 @@
 	});
 
 	$: {
-		console.log(
-			`Reactive statement is running because the cocktailList changed. This runs after the other script code has finished and before the HTML code`
-		);
+		console.table(selectedIngredients);
 	}
 
-	$: {
-		console.log(
-			`Reactive statement is running because the ingredientsList changed. This runs after the other script code has finished and before the HTML code`
-		);
-	}
+	// $: {
+	// 	console.log(
+	// 		`Reactive statement is running because the cocktailList changed. This runs after the other script code has finished and before the HTML code`
+	// 	);
+	// }
+
+	// $: {
+	// 	console.log(
+	// 		`Reactive statement is running because the ingredientsList changed. This runs after the other script code has finished and before the HTML code`
+	// 	);
+	// }
 
 	const getIngredients = async () => {
 		try {
@@ -47,9 +56,14 @@
 <button on:click={getCocktails}>Get Cocktails</button>
 <form>
 	List of ingredients
-	<select>
+	<select multiple bind:value={selectedIngredients}>
 		{#each ingredientsList as ingredient}
-			<option value={ingredient}>{ingredient.strIngredient1}</option>
+			<option
+				value={ingredient}
+				on:click={() => {
+					console.log('clicked: ' + ingredient.strIngredient1);
+				}}>{ingredient.strIngredient1}</option
+			>
 		{/each}
 	</select>
 </form>
