@@ -1,22 +1,38 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
-	let cocktailList = '';
+	let ingredientsList: any;
+	let cocktailList: any;
 
 	onMount(() => {
 		console.log('mounted');
-		getCocktails();
+		getIngredients();
 	});
 
 	$: {
 		console.log(
-			`Reactive statement is running because the ${cocktailList} changed. This runs after the other script code has finished and before the HTML code`
+			`Reactive statement is running because the cocktailList changed to: ${cocktailList}. This runs after the other script code has finished and before the HTML code`
 		);
 	}
+
+	$: {
+		console.log(
+			`Reactive statement is running because the ingredientsList changed to: ${{
+				ingredientsList
+			}}. This runs after the other script code has finished and before the HTML code`
+		);
+	}
+
+	const getIngredients = async () => {
+		console.log('Getting ingredients');
+
+		const ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+		ingredientsList = await ingredients.json();
+	};
 
 	function getCocktails() {
 		console.log('Mixing a cocktail');
 
-		fetch();
+		// fetch();
 	}
 </script>
 
