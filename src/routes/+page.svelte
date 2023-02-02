@@ -3,7 +3,7 @@
 	let ingredientsList: Drink[] = [];
 	let cocktailList: Cocktail[] = [];
 	let selectedIngredients: string[] = [];
-	let chosenCocktail: Cocktail | undefined;
+	let chosenCocktail: Cocktail | null;
 
 	interface Drink {
 		strIngredient1: string;
@@ -15,7 +15,7 @@
 		strDrinkThumb: string;
 	}
 
-	onMount(() => {
+	onMount((): void => {
 		console.log('mounted');
 		getIngredients();
 	});
@@ -29,7 +29,7 @@
 		chosenCocktail = getRandomCocktail();
 	}
 
-	const getIngredients = async () => {
+	const getIngredients = async (): Promise<void> => {
 		try {
 			console.log('Getting ingredients');
 
@@ -43,7 +43,7 @@
 		}
 	};
 
-	const getCocktails = async () => {
+	const getCocktails = async (): Promise<void> => {
 		try {
 			console.log('Mixing a cocktail');
 
@@ -51,19 +51,21 @@
 				`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${selectedIngredients[0]}`
 			);
 			const cocktailObject = await cocktailsResponse.json();
-			debugger;
+			// debugger;
 			cocktailList = cocktailObject.drinks;
 		} catch (error) {
 			throw new Error('Error getting ingredients list');
 		}
 	};
 
-	const getRandomCocktail = () => {
+	const getRandomCocktail = (): Cocktail | null => {
+		let cocktailToReturn = null;
+
 		if (cocktailList.length > 0) {
-			const cocktailToReturn = cocktailList[Math.floor(Math.random() * cocktailList.length)];
-			console.log(cocktailToReturn);
-			return cocktailToReturn;
+			cocktailToReturn = cocktailList[Math.floor(Math.random() * cocktailList.length)];
 		}
+
+		return cocktailToReturn;
 	};
 </script>
 
