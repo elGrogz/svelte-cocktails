@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	let ingredientsList: Drink[] = [];
-	let cocktailList: any[] = [];
+	let cocktailList: Cocktail[] = [];
 	let selectedIngredients: string[] = [];
 
 	interface Drink {
 		strIngredient1: string;
+	}
+
+	interface Cocktail {
+		idDrink: string;
+		strDrink: string;
+		strDrinkThumb: string;
 	}
 
 	onMount(() => {
@@ -14,7 +20,11 @@
 	});
 
 	$: {
-		console.table(selectedIngredients);
+		console.table('selected ingredients: ', selectedIngredients);
+	}
+
+	$: {
+		console.table('cocktail list: ', cocktailList);
 	}
 
 	const getIngredients = async () => {
@@ -36,10 +46,10 @@
 			console.log('Mixing a cocktail');
 
 			const cocktailsResponse = await fetch(
-				`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${selectedIngredients}`
+				`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${selectedIngredients[0]}`
 			);
-			debugger;
 			const cocktailObject = await cocktailsResponse.json();
+			debugger;
 			cocktailList = cocktailObject.drinks;
 		} catch (error) {
 			throw new Error('Error getting ingredients list');
