@@ -3,6 +3,7 @@
 	let ingredientsList: Drink[] = [];
 	let cocktailList: Cocktail[] = [];
 	let selectedIngredients: string[] = [];
+	let chosenCocktail: Cocktail | undefined;
 
 	interface Drink {
 		strIngredient1: string;
@@ -24,7 +25,8 @@
 	}
 
 	$: {
-		console.table('cocktail list: ', cocktailList);
+		console.log('cocktail list: ', cocktailList);
+		chosenCocktail = getRandomCocktail();
 	}
 
 	const getIngredients = async () => {
@@ -55,6 +57,14 @@
 			throw new Error('Error getting ingredients list');
 		}
 	};
+
+	const getRandomCocktail = () => {
+		if (cocktailList.length > 0) {
+			const cocktailToReturn = cocktailList[Math.floor(Math.random() * cocktailList.length)];
+			console.log(cocktailToReturn);
+			return cocktailToReturn;
+		}
+	};
 </script>
 
 <form>
@@ -71,7 +81,7 @@
 	</select>
 </form>
 <button on:click={getCocktails}>Get Cocktails</button>
-<pre>{cocktailList}</pre>
+<pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
 
 <styles />
 
