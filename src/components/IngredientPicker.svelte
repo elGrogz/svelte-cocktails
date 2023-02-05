@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import type { Ingredient } from '../types/types';
 	export let ingredientsList: Ingredient[];
+	let selectedIngredients: string[] = [];
 </script>
 
 <form>
