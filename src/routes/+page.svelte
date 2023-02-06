@@ -58,6 +58,7 @@
 
 	const handleCocktails = async () => {
 		// cocktailList = await getCocktails(selectedIngredients[0]);
+		console.table({ selectedIngredients });
 		cocktailList = mockCocktails;
 	};
 
@@ -72,7 +73,9 @@
 	};
 </script>
 
-<IngredientPicker {ingredientsList} />
+<IngredientPicker {ingredientsList} {selectedIngredients} />
+<button on:click={handleCocktails}>Get Cocktails</button>
+
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
 
 <styles />

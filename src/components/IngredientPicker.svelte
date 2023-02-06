@@ -3,7 +3,9 @@
 
 	export let ingredientsList: Ingredient[] | null;
 
-	let selectedIngredients: string[] = [];
+	export let selectedIngredients: string[] = [];
+
+	// $: console.log('SELECTED INGREDIENTS', selectedIngredients);
 </script>
 
 <form>
@@ -13,6 +15,8 @@
 			<div>
 				{ingredient.strIngredient1}
 				<input
+					type="checkbox"
+					bind:group={selectedIngredients}
 					value={ingredient.strIngredient1}
 					on:click={() => {
 						console.log('clicked: ' + ingredient.strIngredient1);
@@ -23,6 +27,7 @@
 	{/if}
 </form>
 
+<!-- <button on:click={handleCocktails}>Get Cocktails</button> -->
 <!-- <form>
 	List of ingredients
 	<select multiple bind:value={selectedIngredients}>
@@ -38,4 +43,3 @@
 		{/if}
 	</select>
 </form> -->
-<!-- <button on:click={handleCocktails}>Get Cocktails</button> -->
