@@ -39,7 +39,7 @@
 	};
 </script>
 
-<IngredientPicker />
+<IngredientPicker {ingredientsList} />
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
 
 <styles />
