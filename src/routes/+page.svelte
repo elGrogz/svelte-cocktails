@@ -43,8 +43,8 @@
 	];
 
 	onMount(async (): Promise<void> => {
-		// ingredientsList = await getIngredients();
-		ingredientsList = mockIngredients;
+		ingredientsList = await getIngredients();
+		// ingredientsList = mockIngredients;
 	});
 
 	$: {
@@ -57,9 +57,9 @@
 	}
 
 	const handleCocktails = async () => {
-		// cocktailList = await getCocktails(selectedIngredients[0]);
+		cocktailList = await getCocktails(selectedIngredients[0]);
 		console.table({ selectedIngredients });
-		cocktailList = mockCocktails;
+		// cocktailList = mockCocktails;
 	};
 
 	const getRandomCocktail = (): Cocktail | null => {

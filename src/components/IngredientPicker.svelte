@@ -1,9 +1,18 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import type { Ingredient } from '../types/types';
 
 	export let ingredientsList: Ingredient[] | null;
 
 	export let selectedIngredients: string[] = [];
+
+	const dispatcher = createEventDispatcher();
+
+	function sendIngredientEvent() {
+		dispatcher('getIngredients', {
+			selectedIngredients: selectedIngredients
+		});
+	}
 
 	// $: console.log('SELECTED INGREDIENTS', selectedIngredients);
 </script>
@@ -20,6 +29,7 @@
 					value={ingredient.strIngredient1}
 					on:click={() => {
 						console.log('clicked: ' + ingredient.strIngredient1);
+						sendIngredientEvent();
 					}}
 				/>
 			</div>
