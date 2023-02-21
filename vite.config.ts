@@ -5,6 +5,11 @@ const config: UserConfig = {
 	plugins: [sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	server: {
+		fs: {
+			allow: ['/Users/gregor.gilchrist/dev/projects/svelte-cocktails']
+		}
 	}
 };
 

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	// import { getMockIngredients } from '../../tests/utils/mockResponses';
 
 	import IngredientPicker from '../components/IngredientPicker.svelte';
 
@@ -12,56 +11,23 @@
 	let selectedIngredients: string[] = [];
 	let chosenCocktail: Cocktail | null;
 
-	let mockIngredients: Ingredient[] = [
-		{
-			strIngredient1: 'Light rum'
-		},
-		{
-			strIngredient1: 'Gin'
-		},
-		{
-			strIngredient1: 'Dark rum'
-		}
-	];
-
-	let mockCocktails: Cocktail[] = [
-		{
-			idDrink: '1',
-			strDrink: 'Cocktail 1',
-			strDrinkThumb: 'blah'
-		},
-		{
-			idDrink: '2',
-			strDrink: 'Cocktail 2',
-			strDrinkThumb: 'blah'
-		},
-		{
-			idDrink: '3',
-			strDrink: 'Cocktail 3',
-			strDrinkThumb: 'blah'
-		}
-	];
-
 	onMount(async (): Promise<void> => {
-		ingredientsList = await getIngredients();
-		// ingredientsList = mockIngredients;
+		ingredientsList = await getIngredients(); // try using await blocks, eg: {#await expression}...{:then name}...{:catch name}...{/await}
 	});
 
-	$: {
-		console.table('selected ingredients: ', selectedIngredients);
-	}
-
 	$: if (cocktailList) {
-		console.log('cocktail list updated');
 		chosenCocktail = getRandomCocktail();
 	}
 
-	const handleCocktails = async () => {
-		cocktailList = await getCocktails(selectedIngredients[0]);
-		console.table({ selectedIngredients });
-		// cocktailList = mockCocktails;
+	const handleIngredientListChanged = (event: any) => {
+		selectedIngredients = event.detail;
 	};
 
+	const handleCocktails = async () => {
+		cocktailList = await getCocktails(selectedIngredients[0]); // need paid version to do multiple
+	};
+
+	// move this to util
 	const getRandomCocktail = (): Cocktail | null => {
 		let cocktailToReturn = null;
 
@@ -73,7 +39,10 @@
 	};
 </script>
 
-<IngredientPicker {ingredientsList} {selectedIngredients} />
+{@debug selectedIngredients}
+{@debug cocktailList}
+
+<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
 <button on:click={handleCocktails}>Get Cocktails</button>
 
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>

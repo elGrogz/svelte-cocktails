@@ -1,0 +1,22 @@
+- `{@debug variable}` console logging syntax for the specified variable (also just `{@debug}` will insert a debugger statement)
+- `{#await ....}` syntax. Allows you to include promise logic directly in the HTML.
+- `{if ...}` and `{each ...}` statements are nice too.
+- `bind` from child to parent
+
+# Interesting stuff:
+
+- This works as expected:
+
+on:change={() => {
+console.log('clicked: ' + ingredient.strIngredient1);
+sendIngredientEvent();
+}}
+
+- But this doesn't:
+
+on:change={() => {
+console.log('clicked: ' + ingredient.strIngredient1);
+sendIngredientEvent();
+}}
+
+- Does on:click always fire first?
