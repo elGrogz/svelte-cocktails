@@ -1,5 +1,20 @@
 - `{@debug variable}` console logging syntax for the specified variable (also just `{@debug}` will insert a debugger statement)
 - `{#await ....}` syntax. Allows you to include promise logic directly in the HTML.
+
+Before I had this:
+
+```js
+onMount(async (): Promise<void> => {
+	ingredientsList = await getIngredients(); // try using await blocks, eg: {#await expression}...{:then name}...{:catch name}...{/await}
+});
+```
+
+```js
+<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+```
+
+After I had this
+
 - `{if ...}` and `{each ...}` statements are nice too.
 - `bind` from child to parent
 

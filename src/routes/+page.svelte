@@ -6,14 +6,14 @@
 	import type { Cocktail, Ingredient } from '../types/types';
 	import { getCocktails, getIngredients } from '../utils/api';
 
-	let ingredientsList: Ingredient[] | null = null;
+	// let ingredientsList: Ingredient[] | null = null;
 	let cocktailList: Cocktail[] | null = null;
 	let selectedIngredients: string[] = [];
 	let chosenCocktail: Cocktail | null;
 
-	onMount(async (): Promise<void> => {
-		ingredientsList = await getIngredients(); // try using await blocks, eg: {#await expression}...{:then name}...{:catch name}...{/await}
-	});
+	// onMount(async (): Promise<void> => {
+	// 	ingredientsList = await getIngredients(); // try using await blocks, eg: {#await expression}...{:then name}...{:catch name}...{/await}
+	// });
 
 	$: if (cocktailList) {
 		chosenCocktail = getRandomCocktail();
@@ -42,7 +42,13 @@
 {@debug selectedIngredients}
 {@debug cocktailList}
 
-<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+{#await getIngredients()}
+	<p>Loading ingredients</p>
+{:then ingredientsList}
+	<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+{:catch error}
+	<p>{error}</p>
+{/await}
 <button on:click={handleCocktails}>Get Cocktails</button>
 
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>

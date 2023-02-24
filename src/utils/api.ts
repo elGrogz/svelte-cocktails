@@ -18,7 +18,7 @@ export const getIngredients = async (): Promise<Ingredient[] | null> => {
 			'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 		);
 		const ingredientsObject = await ingredientsResponse.json();
-		return ingredientsObject.drinks;
+		return ingredientsObject.drinks as Ingredient[] | null;
 	} catch (error) {
 		throw new Error('Error getting ingredients list');
 	}
@@ -40,7 +40,7 @@ export const getCocktails = async (cocktail: string): Promise<Cocktail[] | null>
 			`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`
 		);
 		const cocktailObject = await cocktailsResponse.json();
-		return cocktailObject.drinks;
+		return cocktailObject.drinks as Cocktail[] | null;
 	} catch (error) {
 		throw new Error('Error getting ingredients list');
 	}
