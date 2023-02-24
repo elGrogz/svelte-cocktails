@@ -1,31 +1,37 @@
 import type { Ingredient, Cocktail } from '../types/types';
 import { getMockIngredients, getMockCocktails } from '../../tests/utils/mockResponses';
 
+import { PUBLIC_MOCK } from '$env/static/public';
+
 export const getIngredients = async (): Promise<Ingredient[] | null> => {
-	const ingredientsResponse = await getMockIngredients();
-	const ingredientsObject = JSON.parse(ingredientsResponse);
+	if (PUBLIC_MOCK === 'true') {
+		const ingredientsResponse = await getMockIngredients();
+		const ingredientsObject = JSON.parse(ingredientsResponse);
 
-	return ingredientsObject;
+		return ingredientsObject;
+	}
 
-	// try {
-	// 	console.log('Getting ingredients');
+	try {
+		console.log('Getting ingredients');
 
-	// 	const ingredientsResponse = await fetch(
-	// 		'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
-	// 	);
-	// 	const ingredientsObject = await ingredientsResponse.json();
-	// 	return ingredientsObject.drinks;
-	// } catch (error) {
-	// 	throw new Error('Error getting ingredients list');
-	// }
+		const ingredientsResponse = await fetch(
+			'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+		);
+		const ingredientsObject = await ingredientsResponse.json();
+		return ingredientsObject.drinks;
+	} catch (error) {
+		throw new Error('Error getting ingredients list');
+	}
 };
 
 export const getCocktails = async (cocktail: string): Promise<Cocktail[] | null> => {
-	console.log('THIS IS THE INGREDIENT', cocktail);
-	const cocktailResponse = await getMockCocktails();
-	const cocktailObject = JSON.parse(cocktailResponse);
+	if (PUBLIC_MOCK === 'true') {
+		console.log('Running in mock mode');
+		const cocktailResponse = await getMockCocktails();
+		const cocktailObject = JSON.parse(cocktailResponse);
 
-	return cocktailObject.drinks;
+		return cocktailObject.drinks;
+	}
 
 	try {
 		console.log('Mixing a cocktail');

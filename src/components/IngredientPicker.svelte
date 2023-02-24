@@ -34,3 +34,10 @@
 		{/each}
 	{/if}
 </form>
+
+<style>
+	form {
+		display: flex;
+		flex-wrap: wrap;
+	}
+</style>
