@@ -39,8 +39,8 @@
 	};
 </script>
 
-{@debug selectedIngredients}
-{@debug cocktailList}
+<!-- {@debug selectedIngredients}
+{@debug cocktailList} -->
 
 {#await getIngredients()}
 	<p>Loading ingredients</p>
@@ -49,7 +49,9 @@
 {:catch error}
 	<p>{error}</p>
 {/await}
-<button on:click={handleCocktails}>Get Cocktails</button>
+<button on:click={handleCocktails} style="display:flex; justify-content:center; margin-top:20px;"
+	>Get Cocktails</button
+>
 
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
 
