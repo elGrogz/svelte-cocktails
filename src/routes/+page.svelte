@@ -60,6 +60,10 @@
 
 	<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
 </div>
-<pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
+<div class="cocktail-result" style="display:flex; justify-content:center; margin-top:20px;">
+	{#if chosenCocktail}
+		<pre>{chosenCocktail.strDrink}</pre>
+	{/if}
+</div>
 
 <styles />
