@@ -13,7 +13,17 @@ onMount(async (): Promise<void> => {
 <IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
 ```
 
-After I had this
+After I had this:
+
+```js
+{#await getIngredients()}
+	<p>Loading ingredients</p>
+{:then ingredientsList}
+	<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+{:catch error}
+	<p>{error}</p>
+{/await}
+```
 
 - `{if ...}` and `{each ...}` statements are nice too.
 - `bind` from child to parent

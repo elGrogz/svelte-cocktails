@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { debug } from 'svelte/internal';
 
 	import IngredientPicker from '../components/IngredientPicker.svelte';
 
-	import type { Cocktail, Ingredient } from '../types/types';
+	import type { Cocktail, SelectedIngredients } from '../types/types';
 	import { getCocktails, getIngredients } from '../utils/api';
 
 	// let ingredientsList: Ingredient[] | null = null;
 	let cocktailList: Cocktail[] | null = null;
-	let selectedIngredients: string[] = [];
+	let selectedIngredients: SelectedIngredients | null = null;
 	let chosenCocktail: Cocktail | null;
 
 	// onMount(async (): Promise<void> => {
@@ -24,7 +25,7 @@
 	};
 
 	const handleCocktails = async () => {
-		cocktailList = await getCocktails(selectedIngredients[0]); // need paid version to do multiple
+		cocktailList = await getCocktails(selectedIngredients); // need paid version to do multiple
 	};
 
 	// move this to util
@@ -39,46 +40,21 @@
 	};
 </script>
 
-<!-- {@debug selectedIngredients}
-{@debug cocktailList} -->
+<!-- {@debug cocktailList} -->
 
-{#await getIngredients()}
-	<p>Loading ingredients</p>
-{:then ingredientsList}
-	<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
-{:catch error}
-	<p>{error}</p>
-{/await}
-<button on:click={handleCocktails} style="display:flex; justify-content:center; margin-top:20px;"
-	>Get Cocktails</button
->
-
+<div class="ingredient-list">
+	{#await getIngredients()}
+		<p>Loading ingredients</p>
+	{:then ingredientsList}
+		<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+	{:catch error}
+		<p>{error}</p>
+	{/await}
+</div>
+<div class="get-cocktails-button" style="display:flex; justify-content:center; margin-top:20px;">
+	<!-- {@debug selectedIngredients} -->
+	<button on:click={handleCocktails}> Get Cocktails </button>
+</div>
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
 
 <styles />
-
-<!-- {
-	"drinks": [
-	  {
-		"strIngredient1": "Light rum"
-	  },
-	  {
-		"strIngredient1": "Applejack"
-	  },
-	  {
-		"strIngredient1": "Gin"
-	  },
-	  {
-		"strIngredient1": "Dark rum"
-	  },
-	  {
-		"strIngredient1": "Sweet Vermouth"
-	  },
-	  {
-		"strIngredient1": "Strawberry schnapps"
-	  },
-	  {
-		"strIngredient1": "Scotch"
-	  },
-	]
-  } -->

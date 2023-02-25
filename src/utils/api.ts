@@ -1,4 +1,4 @@
-import type { Ingredient, Cocktail } from '../types/types';
+import type { Ingredient, Cocktail, SelectedIngredients } from '../types/types';
 import { getMockIngredients, getMockCocktails } from '../../tests/utils/mockResponses';
 
 import { PUBLIC_MOCK } from '$env/static/public';
@@ -12,8 +12,6 @@ export const getIngredients = async (): Promise<Ingredient[] | null> => {
 	}
 
 	try {
-		console.log('Getting ingredients');
-
 		const ingredientsResponse = await fetch(
 			'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 		);
@@ -24,21 +22,22 @@ export const getIngredients = async (): Promise<Ingredient[] | null> => {
 	}
 };
 
-export const getCocktails = async (cocktail: string): Promise<Cocktail[] | null> => {
+export const getCocktails = async (
+	ingredients: SelectedIngredients
+): Promise<Cocktail[] | null> => {
 	if (PUBLIC_MOCK === 'true') {
-		console.log('Running in mock mode');
 		const cocktailResponse = await getMockCocktails();
 		const cocktailObject = JSON.parse(cocktailResponse);
 
 		return cocktailObject.drinks;
 	}
+	console.log('Ingredient TO FETCH 3: ', ingredients.selectedIngredients[0]);
 
 	try {
-		console.log('Mixing a cocktail');
-
 		const cocktailsResponse = await fetch(
-			`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`
+			`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredients.selectedIngredients[0]}`
 		);
+		console.log('RESPONSE: ', cocktailsResponse);
 		const cocktailObject = await cocktailsResponse.json();
 		return cocktailObject.drinks as Cocktail[] | null;
 	} catch (error) {
