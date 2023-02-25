@@ -60,9 +60,13 @@
 
 	<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
 </div>
-<div class="cocktail-result" style="display:flex; justify-content:center; margin-top:20px;">
+<div
+	class="cocktail-result"
+	style="display:flex; flex-direction:column; align-items:center; margin-top:20px;"
+>
 	{#if chosenCocktail}
-		<pre>{chosenCocktail.strDrink}</pre>
+		<h2>{chosenCocktail.strDrink}</h2>
+		<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
 	{/if}
 </div>
 

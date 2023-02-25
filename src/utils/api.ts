@@ -39,6 +39,7 @@ export const getCocktails = async (
 		);
 		console.log('RESPONSE: ', cocktailsResponse);
 		const cocktailObject = await cocktailsResponse.json();
+		console.log({ cocktailObject });
 		return cocktailObject.drinks as Cocktail[] | null;
 	} catch (error) {
 		throw new Error('Error getting ingredients list');
