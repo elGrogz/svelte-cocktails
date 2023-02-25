@@ -25,7 +25,11 @@
 	};
 
 	const handleCocktails = async () => {
-		cocktailList = await getCocktails(selectedIngredients); // need paid version to do multiple
+		if (selectedIngredients) {
+			cocktailList = await getCocktails(selectedIngredients); // need paid version to do multiple
+		} else {
+			alert('Must select one or more cocktails');
+		}
 	};
 
 	// move this to util
@@ -53,7 +57,8 @@
 </div>
 <div class="get-cocktails-button" style="display:flex; justify-content:center; margin-top:20px;">
 	<!-- {@debug selectedIngredients} -->
-	<button on:click={handleCocktails}> Get Cocktails </button>
+
+	<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
 </div>
 <pre>{chosenCocktail && chosenCocktail.strDrink}</pre>
 
