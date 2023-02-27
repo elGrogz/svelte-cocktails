@@ -38,13 +38,17 @@
 </div>
 
 <style>
+	h2 {
+		font-family: 'Satisfy', 'Brush Script MT';
+	}
+
 	form {
 		display: flex;
 		flex-wrap: wrap;
 	}
 
 	.ingredient-box {
-		padding: 2px;
+		padding: 5px;
 		margin: 2px;
 		border-color: black;
 		border-radius: 10px;

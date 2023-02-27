@@ -46,6 +46,8 @@
 
 <!-- {@debug cocktailList} -->
 
+<h1>Gimme a cocktail!</h1>
+
 <div class="ingredient-list">
 	{#await getIngredients()}
 		<p>Loading ingredients</p>
@@ -73,6 +75,12 @@
 <style>
 	:global(body) {
 		margin: 1;
-		background-color: blue;
+		background-color: rgb(14, 241, 253);
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	}
+
+	h1 {
+		text-align: center;
+		font-family: 'Satisfy', 'Brush Script MT';
 	}
 </style>
