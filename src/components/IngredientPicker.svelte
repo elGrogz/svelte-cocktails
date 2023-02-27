@@ -16,7 +16,7 @@
 
 <!-- {@debug selectedIngredients} -->
 
-<div style="text-align: center;">
+<div class="ingredient-container">
 	<h2>List of ingredients:</h2>
 	<form>
 		{#if ingredientsList}
@@ -45,6 +45,11 @@
 	form {
 		display: flex;
 		flex-wrap: wrap;
+	}
+
+	.ingredient-container {
+		text-align: center;
+		width: 80%;
 	}
 
 	.ingredient-box {

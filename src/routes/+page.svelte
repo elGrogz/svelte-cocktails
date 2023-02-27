@@ -49,7 +49,7 @@
 <section class="content-section">
 	<h1>Gimme a cocktail!</h1>
 
-	<div class="ingredient-list">
+	<div>
 		{#await getIngredients()}
 			<p>Loading ingredients</p>
 		{:then ingredientsList}
@@ -58,7 +58,7 @@
 			<p>{error}</p>
 		{/await}
 	</div>
-	<div class="get-cocktails-button" style="display:flex; justify-content:center; margin-top:20px;">
+	<div>
 		<!-- {@debug selectedIngredients} -->
 
 		<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
@@ -118,6 +118,9 @@
 
 	.content-section {
 		background-color: #f5a623;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.custom-shape-divider-top-1677523311 {
