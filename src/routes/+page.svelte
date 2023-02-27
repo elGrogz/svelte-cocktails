@@ -70,4 +70,9 @@
 	{/if}
 </div>
 
-<styles />
+<style>
+	:global(body) {
+		margin: 1;
+		background-color: blue;
+	}
+</style>

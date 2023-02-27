@@ -49,5 +49,6 @@
 		border-color: black;
 		border-radius: 10px;
 		border: solid 1px;
+		background-color: aquamarine;
 	}
 </style>
