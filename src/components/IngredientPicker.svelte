@@ -42,14 +42,18 @@
 		font-family: 'Satisfy', 'Brush Script MT';
 	}
 
-	form {
+	.ingredient-container {
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
+		text-align: center;
+		/* align-items: center; */
+		width: 80%;
 	}
 
-	.ingredient-container {
-		text-align: center;
-		width: 80%;
+	form {
+		display: flex;
+		align-self: center;
+		flex-wrap: wrap;
 	}
 
 	.ingredient-box {

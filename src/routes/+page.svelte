@@ -49,24 +49,19 @@
 <section class="content-section">
 	<h1>Gimme a cocktail!</h1>
 
-	<div>
-		{#await getIngredients()}
-			<p>Loading ingredients</p>
-		{:then ingredientsList}
-			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
-		{:catch error}
-			<p>{error}</p>
-		{/await}
-	</div>
+	{#await getIngredients()}
+		<p>Loading ingredients</p>
+	{:then ingredientsList}
+		<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+	{:catch error}
+		<p>{error}</p>
+	{/await}
 	<div>
 		<!-- {@debug selectedIngredients} -->
 
 		<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
 	</div>
-	<div
-		class="cocktail-result"
-		style="display:flex; flex-direction:column; align-items:center; margin-top:20px;"
-	>
+	<div class="cocktail-result">
 		{#if chosenCocktail}
 			<h2>{chosenCocktail.strDrink}</h2>
 			<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
@@ -109,11 +104,10 @@
 
 	section {
 		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		/* display: flex; */
+		/* flex-direction: column; */
+		/* align-items: center; */
 		min-height: 100px;
-		/* padding: 2vw; */
 	}
 
 	.content-section {
@@ -121,6 +115,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.cocktail-result {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
 	}
 
 	.custom-shape-divider-top-1677523311 {
@@ -143,7 +144,7 @@
 		fill: #f5a623;
 	}
 
-	/** For tablet devices **/
+	/**For tablet devices **/
 	@media (min-width: 768px) and (max-width: 1023px) {
 		.custom-shape-divider-top-1677523311 svg {
 			width: calc(180% + 1.3px);
