@@ -16,9 +16,9 @@
 
 <!-- {@debug selectedIngredients} -->
 
-<div class="ingredient-container">
-	<h2>List of ingredients:</h2>
-	<form>
+<!-- <div class="ingredient-container"> -->
+<!-- <h2>List of ingredients:</h2> -->
+<!-- <form>
 		{#if ingredientsList}
 			{#each ingredientsList as ingredient}
 				<div class="ingredient-box">
@@ -34,12 +34,23 @@
 				</div>
 			{/each}
 		{/if}
-	</form>
-</div>
+	</form> -->
+<!-- </div> -->
+<div class="ingredient-dropdown">List of ingredients</div>
 
 <style>
 	h2 {
 		font-family: 'Satisfy', 'Brush Script MT';
+	}
+
+	.ingredient-dropdown {
+		border: solid 5px;
+		border-color: black;
+		width: 15%;
+		text-align: center;
+		padding: 10px;
+		margin-bottom: 10px;
+		background-color: aquamarine;
 	}
 
 	.ingredient-container {
@@ -48,6 +59,10 @@
 		text-align: center;
 		/* align-items: center; */
 		width: 80%;
+	}
+
+	.ingredient-dropdown:hover {
+		background-color: aqua;
 	}
 
 	form {
