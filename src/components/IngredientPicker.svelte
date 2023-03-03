@@ -44,8 +44,14 @@
 <button class="ingredient-dropdown" on:click={handleListIngredientsClick}
 	>List of ingredients</button
 >
-{#if ingredientsDropdownOpened}
-	<div class="ingredients-list">Hello there</div>
+{#if ingredientsDropdownOpened && ingredientsList}
+	<div class="ingredients-list">
+		Hello there
+
+		{#each ingredientsList as ingredient}
+			<div>{ingredient.strIngredient1}</div>
+		{/each}
+	</div>
 {/if}
 
 <style>
