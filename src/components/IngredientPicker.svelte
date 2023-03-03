@@ -41,15 +41,16 @@
 		{/if}
 	</form> -->
 <!-- </div> -->
-<button class="ingredient-dropdown" on:click={handleListIngredientsClick}
+<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
 	>List of ingredients</button
 >
 {#if ingredientsDropdownOpened && ingredientsList}
 	<div class="ingredients-list">
-		Hello there
-
 		{#each ingredientsList as ingredient}
-			<div>{ingredient.strIngredient1}</div>
+			<div class="ingredient-container">
+				<div class="ingredient">{ingredient.strIngredient1}</div>
+				<div class="ingredient-checkbox" />
+			</div>
 		{/each}
 	</div>
 {/if}
@@ -59,9 +60,10 @@
 		font-family: 'Satisfy', 'Brush Script MT';
 	}
 
-	.ingredient-dropdown {
-		border: solid 5px;
+	.ingredient-dropdown-button {
+		border: solid 3px;
 		border-color: black;
+		border-radius: 5px;
 		width: 20%;
 		text-align: center;
 		padding: 10px;
@@ -70,11 +72,47 @@
 		box-shadow: black 3px 3px;
 	}
 
+	.ingredients-list {
+		padding-top: -5px;
+		border: solid 2px;
+		border-color: black;
+		border-radius: 5px;
+		width: 20%;
+		max-height: 40vh;
+		padding: 10px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		background-color: aquamarine;
+	}
+
 	.ingredient-container {
+		display: flex;
+		flex-direction: row;
+		margin-top: 5px;
+		background-color: orange;
+		border: solid 2px;
+		border-color: orangered;
+		border-radius: 10px;
+		padding: 10px;
+	}
+	.ingredient {
+		margin-left: 10%;
+	}
+
+	.ingredient-checkbox {
+		height: 15px;
+		width: 15px;
+		border: solid 2px;
+		border-color: black;
+		border-radius: 20%;
+		margin-left: auto;
+	}
+
+	/*	.ingredient-container {
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-		/* align-items: center; */
+		/* align-items: center;
 		width: 80%;
 	}
 
@@ -96,4 +134,5 @@
 		border: solid 1px;
 		background-color: aquamarine;
 	}
+	*/
 </style>
