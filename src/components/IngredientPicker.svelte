@@ -2,8 +2,13 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { Ingredient } from '../types/types';
 
+	let ingredientsDropdownOpened = false;
 	export let ingredientsList: Ingredient[] | null;
 	export let selectedIngredients: string[] = [];
+
+	function handleListIngredientsClick() {
+		ingredientsDropdownOpened = !ingredientsDropdownOpened;
+	}
 
 	const dispatcher = createEventDispatcher();
 
@@ -36,7 +41,12 @@
 		{/if}
 	</form> -->
 <!-- </div> -->
-<div class="ingredient-dropdown">List of ingredients</div>
+<button class="ingredient-dropdown" on:click={handleListIngredientsClick}
+	>List of ingredients</button
+>
+{#if ingredientsDropdownOpened}
+	<div class="ingredients-list">Hello there</div>
+{/if}
 
 <style>
 	h2 {
@@ -46,11 +56,12 @@
 	.ingredient-dropdown {
 		border: solid 5px;
 		border-color: black;
-		width: 15%;
+		width: 20%;
 		text-align: center;
 		padding: 10px;
 		margin-bottom: 10px;
 		background-color: aquamarine;
+		box-shadow: black 3px 3px;
 	}
 
 	.ingredient-container {
