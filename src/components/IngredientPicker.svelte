@@ -41,30 +41,39 @@
 		{/if}
 	</form> -->
 <!-- </div> -->
-<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
-	>List of ingredients</button
->
-{#if ingredientsDropdownOpened && ingredientsList}
-	<div class="ingredients-list">
-		{#each ingredientsList as ingredient}
-			<div class="ingredient-container">
-				<div class="ingredient">{ingredient.strIngredient1}</div>
-				<div class="ingredient-checkbox" />
-			</div>
-		{/each}
-	</div>
-{/if}
+<div class="main-ingredients-container">
+	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
+		>List of ingredients</button
+	>
+	{#if ingredientsDropdownOpened && ingredientsList}
+		<div class="ingredients-list">
+			{#each ingredientsList as ingredient}
+				<div class="ingredient-container">
+					<div class="ingredient">{ingredient.strIngredient1}</div>
+					<input type="checkbox" class="ingredient-checkbox" />
+				</div>
+			{/each}
+		</div>
+	{/if}
+</div>
 
 <style>
-	h2 {
+	.main-ingredients-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	button {
 		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: larger;
 	}
 
 	.ingredient-dropdown-button {
 		border: solid 3px;
 		border-color: black;
 		border-radius: 5px;
-		width: 20%;
+		/* width: 20%; */
 		text-align: center;
 		padding: 10px;
 		margin-bottom: 10px;
@@ -72,17 +81,22 @@
 		box-shadow: black 3px 3px;
 	}
 
+	.ingredient-dropdown-button:hover {
+		background-color: aqua;
+	}
+
 	.ingredients-list {
 		padding-top: -5px;
-		border: solid 2px;
+		border: solid 3px;
 		border-color: black;
 		border-radius: 5px;
-		width: 20%;
+		/* width: 20%; */
 		max-height: 40vh;
 		padding: 10px;
 		overflow-y: scroll;
 		overflow-x: hidden;
 		background-color: aquamarine;
+		box-shadow: black 3px 3px;
 	}
 
 	.ingredient-container {
@@ -100,11 +114,11 @@
 	}
 
 	.ingredient-checkbox {
-		height: 15px;
+		/* height: 15px;
 		width: 15px;
 		border: solid 2px;
-		border-color: black;
-		border-radius: 20%;
+		border-color: blac;
+		border-radius: 20%; */
 		margin-left: auto;
 	}
 
