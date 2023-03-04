@@ -56,11 +56,12 @@
 	{:catch error}
 		<p>{error}</p>
 	{/await}
-	<div>
-		<!-- {@debug selectedIngredients} -->
+	<!-- {@debug selectedIngredients} -->
 
-		<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
-	</div>
+	<button class="get-cocktail-button" on:click={handleCocktails} disabled={!selectedIngredients}>
+		Find me a cocktail!
+	</button>
+
 	<div class="cocktail-result">
 		{#if chosenCocktail}
 			<h2>{chosenCocktail.strDrink}</h2>
@@ -102,11 +103,27 @@
 		overflow-x: hidden;
 	}
 
+	:global(button) {
+		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: larger;
+		border: solid 3px;
+		border-color: black;
+		border-radius: 5px;
+		text-align: center;
+		padding: 10px;
+		margin-bottom: 10px;
+		background-color: aquamarine;
+		box-shadow: black 3px 3px;
+		max-height: 50px;
+	}
+
+	h1 {
+		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: xx-large;
+	}
+
 	section {
 		position: relative;
-		/* display: flex; */
-		/* flex-direction: column; */
-		/* align-items: center; */
 		min-height: 100px;
 	}
 
@@ -115,6 +132,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.get-cocktail-button {
+		margin-top: 10px;
 	}
 
 	.cocktail-result {
@@ -150,32 +171,5 @@
 			width: calc(180% + 1.3px);
 			height: 153px;
 		}
-	}
-
-	/* .curve::before {
-		content: '';
-		display: block;
-		position: absolute;
-		border-radius: 100% 50%;
-		width: 55%;
-		height: 100%;
-		background-color: black;
-		transform: translate(-4%, 40%);
-	}
-
-	.curve::after {
-		content: '';
-		display: block;
-		position: absolute;
-		border-radius: 100% 50%;
-		width: 55%;
-		height: 100%;
-		background-color: azure;
-		transform: translate(60%, 40%);
-		z-index: 1;
-	} */
-
-	h1 {
-		font-family: 'Satisfy', 'Brush Script MT';
 	}
 </style>
