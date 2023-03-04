@@ -17,7 +17,25 @@
 			selectedIngredients: selectedIngredients
 		});
 	}
+
+	function handleIngredientClick(ingredient: Ingredient) {
+		console.log('ingredient: ', ingredient.strIngredient1);
+		if (selectedIngredients?.includes(ingredient.strIngredient1)) {
+			const ingredientIndex = selectedIngredients.indexOf(ingredient.strIngredient1);
+			selectedIngredients.splice(ingredientIndex, 1);
+			selectedIngredients = selectedIngredients;
+		} else {
+			selectedIngredients = [...selectedIngredients, ingredient.strIngredient1];
+		}
+
+		sendIngredientEvent();
+	}
 </script>
+
+<!-- {@debug selectedIngredients} -->
+
+<!-- // SEARCH BAR LOL -->
+<!-- // CLEAR COCKTAILS BUTTON -->
 
 <div class="main-ingredients-container">
 	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
@@ -27,16 +45,17 @@
 	{#if ingredientsDropdownOpened && ingredientsList}
 		<div class="ingredients-list">
 			{#each ingredientsList as ingredient}
-				<div class="ingredient-container">
+				<div
+					class="ingredient-container"
+					on:click={() => {
+						handleIngredientClick(ingredient);
+					}}
+				>
 					<div class="ingredient-name">{ingredient.strIngredient1}</div>
 					<input
 						type="checkbox"
 						class="ingredient-checkbox"
-						bind:group={selectedIngredients}
-						value={ingredient.strIngredient1}
-						on:change={() => {
-							sendIngredientEvent();
-						}}
+						checked={selectedIngredients.includes(ingredient.strIngredient1)}
 					/>
 				</div>
 			{/each}
@@ -44,15 +63,14 @@
 	{/if}
 </div>
 
+<!-- bind:group={selectedIngredients} -->
+
+<!-- value={ingredient.strIngredient1} -->
 <style>
 	.main-ingredients-container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
-
-	.ingredient-dropdown-button:hover {
-		background-color: aqua;
 	}
 
 	.ingredients-list {

@@ -117,6 +117,10 @@
 		max-height: 50px;
 	}
 
+	:global(button):hover {
+		background-color: aqua;
+	}
+
 	h1 {
 		font-family: 'Satisfy', 'Brush Script MT';
 		font-size: xx-large;
