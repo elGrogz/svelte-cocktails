@@ -109,11 +109,11 @@
 		border: solid 3px;
 		border-color: black;
 		border-radius: 5px;
+		box-shadow: black 3px 3px;
 		text-align: center;
 		padding: 10px;
 		margin-bottom: 10px;
 		background-color: aquamarine;
-		box-shadow: black 3px 3px;
 		max-height: 50px;
 	}
 
@@ -136,6 +136,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	img {
+		border-radius: 10px;
+		border: solid 2px;
+		border-color: black;
+		border-radius: 5px;
 	}
 
 	.get-cocktail-button {
