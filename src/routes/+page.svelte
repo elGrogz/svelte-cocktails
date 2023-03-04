@@ -56,11 +56,12 @@
 	{:catch error}
 		<p>{error}</p>
 	{/await}
-	<div>
-		<!-- {@debug selectedIngredients} -->
+	<!-- {@debug selectedIngredients} -->
 
-		<button on:click={handleCocktails} disabled={!selectedIngredients}> Get Cocktails </button>
-	</div>
+	<button class="get-cocktail-button" on:click={handleCocktails} disabled={!selectedIngredients}>
+		Get Cocktails
+	</button>
+
 	<div class="cocktail-result">
 		{#if chosenCocktail}
 			<h2>{chosenCocktail.strDrink}</h2>
@@ -102,11 +103,22 @@
 		overflow-x: hidden;
 	}
 
+	:global(button) {
+		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: larger;
+		border: solid 3px;
+		border-color: black;
+		border-radius: 5px;
+		text-align: center;
+		padding: 10px;
+		margin-bottom: 10px;
+		background-color: aquamarine;
+		box-shadow: black 3px 3px;
+		max-height: 50px;
+	}
+
 	section {
 		position: relative;
-		/* display: flex; */
-		/* flex-direction: column; */
-		/* align-items: center; */
 		min-height: 100px;
 	}
 
@@ -115,6 +127,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.get-cocktail-button {
+		margin-top: 10px;
 	}
 
 	.cocktail-result {

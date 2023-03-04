@@ -49,7 +49,7 @@
 		<div class="ingredients-list">
 			{#each ingredientsList as ingredient}
 				<div class="ingredient-container">
-					<div class="ingredient">{ingredient.strIngredient1}</div>
+					<div class="ingredient-name">{ingredient.strIngredient1}</div>
 					<input type="checkbox" class="ingredient-checkbox" />
 				</div>
 			{/each}
@@ -64,28 +64,14 @@
 		align-items: center;
 	}
 
-	button {
-		font-family: 'Satisfy', 'Brush Script MT';
-		font-size: larger;
-	}
-
-	.ingredient-dropdown-button {
-		border: solid 3px;
-		border-color: black;
-		border-radius: 5px;
-		/* width: 20%; */
-		text-align: center;
-		padding: 10px;
-		margin-bottom: 10px;
-		background-color: aquamarine;
-		box-shadow: black 3px 3px;
-	}
-
 	.ingredient-dropdown-button:hover {
 		background-color: aqua;
 	}
 
 	.ingredients-list {
+		position: absolute;
+		transform: translateY(50px);
+		z-index: 1;
 		padding-top: -5px;
 		border: solid 3px;
 		border-color: black;
@@ -109,7 +95,13 @@
 		border-radius: 10px;
 		padding: 10px;
 	}
-	.ingredient {
+
+	.ingredient-container:hover {
+		background-color: orangered;
+		border-color: red;
+	}
+
+	.ingredient-name {
 		margin-left: 10%;
 	}
 
