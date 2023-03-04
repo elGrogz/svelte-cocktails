@@ -41,16 +41,26 @@
 		{/if}
 	</form> -->
 <!-- </div> -->
+<!-- {@debug selectedIngredients} -->
 <div class="main-ingredients-container">
 	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
 		>List of ingredients</button
 	>
+
 	{#if ingredientsDropdownOpened && ingredientsList}
 		<div class="ingredients-list">
 			{#each ingredientsList as ingredient}
 				<div class="ingredient-container">
 					<div class="ingredient-name">{ingredient.strIngredient1}</div>
-					<input type="checkbox" class="ingredient-checkbox" />
+					<input
+						type="checkbox"
+						class="ingredient-checkbox"
+						bind:group={selectedIngredients}
+						value={ingredient.strIngredient1}
+						on:change={() => {
+							sendIngredientEvent();
+						}}
+					/>
 				</div>
 			{/each}
 		</div>
