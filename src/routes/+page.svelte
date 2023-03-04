@@ -59,7 +59,7 @@
 	<!-- {@debug selectedIngredients} -->
 
 	<button class="get-cocktail-button" on:click={handleCocktails} disabled={!selectedIngredients}>
-		Get Cocktails
+		Find me a cocktail!
 	</button>
 
 	<div class="cocktail-result">
@@ -117,6 +117,11 @@
 		max-height: 50px;
 	}
 
+	h1 {
+		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: xx-large;
+	}
+
 	section {
 		position: relative;
 		min-height: 100px;
@@ -166,32 +171,5 @@
 			width: calc(180% + 1.3px);
 			height: 153px;
 		}
-	}
-
-	/* .curve::before {
-		content: '';
-		display: block;
-		position: absolute;
-		border-radius: 100% 50%;
-		width: 55%;
-		height: 100%;
-		background-color: black;
-		transform: translate(-4%, 40%);
-	}
-
-	.curve::after {
-		content: '';
-		display: block;
-		position: absolute;
-		border-radius: 100% 50%;
-		width: 55%;
-		height: 100%;
-		background-color: azure;
-		transform: translate(60%, 40%);
-		z-index: 1;
-	} */
-
-	h1 {
-		font-family: 'Satisfy', 'Brush Script MT';
 	}
 </style>

@@ -19,29 +19,6 @@
 	}
 </script>
 
-<!-- {@debug selectedIngredients} -->
-
-<!-- <div class="ingredient-container"> -->
-<!-- <h2>List of ingredients:</h2> -->
-<!-- <form>
-		{#if ingredientsList}
-			{#each ingredientsList as ingredient}
-				<div class="ingredient-box">
-					{ingredient.strIngredient1}
-					<input
-						type="checkbox"
-						bind:group={selectedIngredients}
-						value={ingredient.strIngredient1}
-						on:change={() => {
-							sendIngredientEvent();
-						}}
-					/>
-				</div>
-			{/each}
-		{/if}
-	</form> -->
-<!-- </div> -->
-<!-- {@debug selectedIngredients} -->
 <div class="main-ingredients-container">
 	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
 		>List of ingredients</button
@@ -86,7 +63,6 @@
 		border: solid 3px;
 		border-color: black;
 		border-radius: 5px;
-		/* width: 20%; */
 		max-height: 40vh;
 		padding: 10px;
 		overflow-y: scroll;
@@ -116,39 +92,6 @@
 	}
 
 	.ingredient-checkbox {
-		/* height: 15px;
-		width: 15px;
-		border: solid 2px;
-		border-color: blac;
-		border-radius: 20%; */
 		margin-left: auto;
 	}
-
-	/*	.ingredient-container {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-		/* align-items: center;
-		width: 80%;
-	}
-
-	.ingredient-dropdown:hover {
-		background-color: aqua;
-	}
-
-	form {
-		display: flex;
-		align-self: center;
-		flex-wrap: wrap;
-	}
-
-	.ingredient-box {
-		padding: 5px;
-		margin: 2px;
-		border-color: black;
-		border-radius: 10px;
-		border: solid 1px;
-		background-color: aquamarine;
-	}
-	*/
 </style>
