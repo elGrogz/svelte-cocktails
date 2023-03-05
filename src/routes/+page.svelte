@@ -19,20 +19,24 @@
 				result.push(document.getElementsByClassName('ingredients-list')[0]);
 			}
 
+			let dropdownClicked = false;
+
 			if (result.length) {
 				let children = result[0].getElementsByTagName('*');
 				for (let index = 0; index < children.length; index++) {
 					result.push(children[index]);
 				}
 
-				let dropdownClicked = false;
 				for (let index = 0; index < result.length; index++) {
 					if (result[index] === event.target) {
 						dropdownClicked = true;
 					}
 				}
 
-				console.log('dropdown clicked: ', dropdownClicked);
+				if (dropdownClicked) {
+					console.log('dropdown: ', dropdownClicked);
+					dropdownClicked = false;
+				}
 			}
 		});
 	});
