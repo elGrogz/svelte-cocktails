@@ -3,11 +3,15 @@
 	import type { Ingredient } from '../types/types';
 
 	export let ingredientsList: Ingredient[] | null;
-	let ingredientsDropdownOpened = false;
+	export let ingredientsDropdownOpened = false;
 	let selectedIngredients: string[] = [];
 
 	function handleListIngredientsClick() {
 		ingredientsDropdownOpened = !ingredientsDropdownOpened;
+	}
+
+	function handleBlockerClicked() {
+		ingredientsDropdownOpened = false;
 	}
 
 	const dispatcher = createEventDispatcher();
@@ -42,8 +46,11 @@
 		>List of ingredients</button
 	>
 
-	{#if ingredientsDropdownOpened && ingredientsList}
-		<div class="ingredients-list">
+	{#if ingredientsList}
+		{#if ingredientsDropdownOpened}
+			<div class="blocker" on:click={handleBlockerClicked} />
+		{/if}
+		<div class={ingredientsDropdownOpened ? `ingredients-list-open` : `ingredients-list-closed`}>
 			{#each ingredientsList as ingredient}
 				<div
 					class="ingredient-container"
@@ -73,7 +80,21 @@
 		align-items: center;
 	}
 
-	.ingredients-list {
+	.blocker {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		content: ' ';
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.ingredients-list-closed {
+		display: none;
+	}
+
+	.ingredients-list-open {
 		position: absolute;
 		transform: translateY(50px);
 		z-index: 1;

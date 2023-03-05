@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	// import { onMount } from 'svelte';
 	import IngredientPicker from '../components/IngredientPicker.svelte';
 
 	import type { Cocktail, SelectedIngredients } from '../types/types';
@@ -9,37 +9,52 @@
 	let selectedIngredients: SelectedIngredients | null = null;
 	let chosenCocktail: Cocktail | null;
 
-	onMount(() => {
-		document.addEventListener('click', (event) => {
-			let result = [];
+	// onMount(() => {
+	// 	document.addEventListener('click', (event) => {
+	// 		let elementsToWatch = [];
 
-			let listElement = document.getElementsByClassName('ingredients-list')[0];
+	// 		if (
+	// 			event.target === document.getElementsByClassName('ingredient-dropdown-button')[0] ||
+	// 			document.getElementsByClassName('ingredients-list')[0] === undefined
+	// 		) {
+	// 			return;
+	// 		}
 
-			if (listElement) {
-				result.push(document.getElementsByClassName('ingredients-list')[0]);
-			}
+	// 		let listElement = document.getElementsByClassName('ingredients-list')[0];
 
-			let dropdownClicked = false;
+	// 		if (listElement) {
+	// 			// dropdown opened
+	// 			elementsToWatch.push(document.getElementsByClassName('ingredients-list')[0]); // add it to the list of elements to watch
+	// 		}
 
-			if (result.length) {
-				let children = result[0].getElementsByTagName('*');
-				for (let index = 0; index < children.length; index++) {
-					result.push(children[index]);
-				}
+	// 		if (elementsToWatch.length) {
+	// 			// get child elements
+	// 			let children = elementsToWatch[0].getElementsByTagName('*');
+	// 			for (let index = 0; index < children.length; index++) {
+	// 				elementsToWatch.push(children[index]);
+	// 			}
+	// 		}
 
-				for (let index = 0; index < result.length; index++) {
-					if (result[index] === event.target) {
-						dropdownClicked = true;
-					}
-				}
+	// 		let clickedOutsideDropdown = false;
 
-				if (dropdownClicked) {
-					console.log('dropdown: ', dropdownClicked);
-					dropdownClicked = false;
-				}
-			}
-		});
-	});
+	// 		for (let index = 0; index < elementsToWatch.length; index++) {
+	// 			// go through each element on click
+	// 			if (elementsToWatch[index] === event.target) {
+	// 				console.log('outside dropdown clicked: ', clickedOutsideDropdown);
+	// 				clickedOutsideDropdown = false;
+	// 				// if the clicked element is one of the dropdown ones, return
+	// 				return;
+	// 			}
+	// 		}
+
+	// 		clickedOutsideDropdown = true;
+	// 		console.log('outside dropdown clicked: ', clickedOutsideDropdown);
+
+	// 		if (clickedOutsideDropdown) {
+	// 			// send event to
+	// 		}
+	// 	});
+	// });
 
 	$: if (cocktailList) {
 		chosenCocktail = getRandomCocktail();
