@@ -46,10 +46,8 @@
 		>List of ingredients</button
 	>
 
-	{#if ingredientsDropdownOpened}
+	{#if ingredientsList && ingredientsDropdownOpened}
 		<div class="blocker" on:click={handleBlockerClicked} />
-	{/if}
-	{#if ingredientsList}
 		<div class={ingredientsDropdownOpened ? `ingredients-list-open` : `ingredients-list-closed`}>
 			{#each ingredientsList as ingredient}
 				<div
