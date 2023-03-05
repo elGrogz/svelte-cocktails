@@ -2,9 +2,9 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { Ingredient } from '../types/types';
 
-	let ingredientsDropdownOpened = false;
 	export let ingredientsList: Ingredient[] | null;
-	export let selectedIngredients: string[] = [];
+	let ingredientsDropdownOpened = false;
+	let selectedIngredients: string[] = [];
 
 	function handleListIngredientsClick() {
 		ingredientsDropdownOpened = !ingredientsDropdownOpened;
