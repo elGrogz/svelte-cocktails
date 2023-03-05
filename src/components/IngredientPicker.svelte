@@ -30,7 +30,7 @@
 		filteredIngredientsList = getFilteredIngredients();
 	}
 
-	// $: console.log(filteredIngredientsList);
+	$: console.log(filteredIngredientsList);
 
 	const dispatcher = createEventDispatcher();
 
@@ -155,11 +155,12 @@
 	.ingredient-container {
 		display: flex;
 		flex-direction: row;
-		margin-top: 5px;
 		background-color: orange;
 		border: solid 2px;
 		border-color: orangered;
 		border-radius: 10px;
+		margin-top: 5px;
+		margin-right: 10px;
 		padding: 10px;
 	}
 
