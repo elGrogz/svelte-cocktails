@@ -78,6 +78,10 @@
 		align-items: center;
 	}
 
+	.ingredient-dropdown-button {
+		z-index: 2;
+	}
+
 	.blocker {
 		position: fixed;
 		height: 100vh;
@@ -102,7 +106,7 @@
 
 	.ingredients-list-open {
 		position: absolute;
-		transform: translateY(50px);
+		transform: translateY(60px);
 		z-index: 1;
 		padding-top: -5px;
 		border: solid 3px;
