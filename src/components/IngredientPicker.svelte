@@ -81,15 +81,13 @@
 	}
 
 	.blocker {
-		position: sticky;
+		position: fixed;
 		height: 100vh;
 		width: 100vw;
 		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
 		content: ' ';
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.2);
+		z-index: 1;
 	}
 
 	.bottom-blocker {
