@@ -52,12 +52,17 @@
 			Find me a cocktail!
 		</button>
 
+		<!-- TODO: Move into it's own component -->
 		<div class="cocktail-result">
 			{#if chosenCocktail}
 				<h2>{chosenCocktail.strDrink}</h2>
 				<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
 			{/if}
 		</div>
+
+		<!-- TODO: Animation when found (svelte transition)-->
+		<!-- TODO: Recipe fetched then displayed here -->
+		<!-- TODO: Carousel for alternative recipes -->
 	</section>
 	<section>
 		<div class="custom-shape-divider-top-1677523311">

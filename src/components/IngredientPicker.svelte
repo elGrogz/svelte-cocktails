@@ -2,8 +2,10 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { Ingredient } from '../types/types';
 
-	export let ingredientsList: Ingredient[] | null;
 	export let ingredientsDropdownOpened = false;
+	export let ingredientsList: Ingredient[] | null;
+	let filteredIngredientsList: Ingredient[] | null = ingredientsList;
+	let ingredientSearchText: string = '';
 	let selectedIngredients: string[] = [];
 
 	function handleListIngredientsClick() {
@@ -13,6 +15,22 @@
 	function handleBlockerClicked() {
 		ingredientsDropdownOpened = false;
 	}
+
+	function getFilteredIngredients() {
+		if (ingredientsList) {
+			return ingredientsList.filter((ingredient) => {
+				return ingredient.strIngredient1.toLowerCase().includes(ingredientSearchText.toLowerCase());
+			});
+		} else {
+			return null;
+		}
+	}
+
+	$: if (ingredientSearchText) {
+		filteredIngredientsList = getFilteredIngredients();
+	}
+
+	// $: console.log(filteredIngredientsList);
 
 	const dispatcher = createEventDispatcher();
 
@@ -38,18 +56,28 @@
 
 <!-- {@debug selectedIngredients} -->
 
-<!-- // SEARCH BAR LOL -->
-<!-- // CLEAR COCKTAILS BUTTON -->
-
 <div class="main-ingredients-container">
 	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
 		>List of ingredients</button
 	>
 
-	{#if ingredientsList && ingredientsDropdownOpened}
+	<!-- {@debug ingredientSearchText} -->
+
+	<!-- TODO: better shadow effect for boxes -->
+	<!-- TODO: SEARCH BAR -->
+	<!-- TODO: CLEAR SELECTED COCKTAILS BUTTON -->
+
+	{#if filteredIngredientsList && ingredientsDropdownOpened}
 		<div class="blocker" on:click={handleBlockerClicked} />
 		<div class={ingredientsDropdownOpened ? `ingredients-list-open` : `ingredients-list-closed`}>
-			{#each ingredientsList as ingredient}
+			<input
+				class="ingredient-searchbox"
+				type="text"
+				placeholder="Search..."
+				bind:value={ingredientSearchText}
+			/>
+			<!-- <div class="clear-selected-ingredients-icon" on:click={} /> -->
+			{#each filteredIngredientsList as ingredient}
 				<div
 					class="ingredient-container"
 					on:click={() => {
@@ -98,6 +126,10 @@
 		width: 100vw;
 		content: ' ';
 		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.ingredients-search-box {
+		display: none;
 	}
 
 	.ingredients-list-closed {
