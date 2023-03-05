@@ -46,10 +46,10 @@
 		>List of ingredients</button
 	>
 
+	{#if ingredientsDropdownOpened}
+		<div class="blocker" on:click={handleBlockerClicked} />
+	{/if}
 	{#if ingredientsList}
-		{#if ingredientsDropdownOpened}
-			<div class="blocker" on:click={handleBlockerClicked} />
-		{/if}
 		<div class={ingredientsDropdownOpened ? `ingredients-list-open` : `ingredients-list-closed`}>
 			{#each ingredientsList as ingredient}
 				<div
@@ -68,11 +68,11 @@
 			{/each}
 		</div>
 	{/if}
+	<!-- {#if ingredientsDropdownOpened}
+		<div class="bottom-blocker" on:click={handleBlockerClicked} />
+	{/if} -->
 </div>
 
-<!-- bind:group={selectedIngredients} -->
-
-<!-- value={ingredient.strIngredient1} -->
 <style>
 	.main-ingredients-container {
 		display: flex;
@@ -81,11 +81,21 @@
 	}
 
 	.blocker {
-		position: fixed;
+		position: sticky;
+		height: 100vh;
+		width: 100vw;
 		top: 0;
-		left: 0;
 		bottom: 0;
+		left: 0;
 		right: 0;
+		content: ' ';
+		background: rgba(0, 0, 0, 0.5);
+	}
+
+	.bottom-blocker {
+		position: relative;
+		height: 50vh;
+		width: 100vw;
 		content: ' ';
 		background: rgba(0, 0, 0, 0.5);
 	}

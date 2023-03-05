@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import { onMount } from 'svelte';
 	import IngredientPicker from '../components/IngredientPicker.svelte';
 
 	import type { Cocktail, SelectedIngredients } from '../types/types';
@@ -8,53 +7,6 @@
 	let cocktailList: Cocktail[] | null = null;
 	let selectedIngredients: SelectedIngredients | null = null;
 	let chosenCocktail: Cocktail | null;
-
-	// onMount(() => {
-	// 	document.addEventListener('click', (event) => {
-	// 		let elementsToWatch = [];
-
-	// 		if (
-	// 			event.target === document.getElementsByClassName('ingredient-dropdown-button')[0] ||
-	// 			document.getElementsByClassName('ingredients-list')[0] === undefined
-	// 		) {
-	// 			return;
-	// 		}
-
-	// 		let listElement = document.getElementsByClassName('ingredients-list')[0];
-
-	// 		if (listElement) {
-	// 			// dropdown opened
-	// 			elementsToWatch.push(document.getElementsByClassName('ingredients-list')[0]); // add it to the list of elements to watch
-	// 		}
-
-	// 		if (elementsToWatch.length) {
-	// 			// get child elements
-	// 			let children = elementsToWatch[0].getElementsByTagName('*');
-	// 			for (let index = 0; index < children.length; index++) {
-	// 				elementsToWatch.push(children[index]);
-	// 			}
-	// 		}
-
-	// 		let clickedOutsideDropdown = false;
-
-	// 		for (let index = 0; index < elementsToWatch.length; index++) {
-	// 			// go through each element on click
-	// 			if (elementsToWatch[index] === event.target) {
-	// 				console.log('outside dropdown clicked: ', clickedOutsideDropdown);
-	// 				clickedOutsideDropdown = false;
-	// 				// if the clicked element is one of the dropdown ones, return
-	// 				return;
-	// 			}
-	// 		}
-
-	// 		clickedOutsideDropdown = true;
-	// 		console.log('outside dropdown clicked: ', clickedOutsideDropdown);
-
-	// 		if (clickedOutsideDropdown) {
-	// 			// send event to
-	// 		}
-	// 	});
-	// });
 
 	$: if (cocktailList) {
 		chosenCocktail = getRandomCocktail();
