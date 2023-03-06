@@ -26,11 +26,15 @@
 		}
 	}
 
+	function clearSelectedIngredients() {
+		selectedIngredients = [];
+	}
+
 	$: if (ingredientSearchText) {
 		filteredIngredientsList = getFilteredIngredients();
 	}
 
-	$: console.log(filteredIngredientsList);
+	// $: console.log(filteredIngredientsList);
 
 	const dispatcher = createEventDispatcher();
 
@@ -54,8 +58,6 @@
 	}
 </script>
 
-<!-- {@debug selectedIngredients} -->
-
 <div class="main-ingredients-container">
 	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
 		>List of ingredients</button
@@ -64,8 +66,6 @@
 	<!-- {@debug ingredientSearchText} -->
 
 	<!-- TODO: better shadow effect for boxes -->
-	<!-- TODO: SEARCH BAR -->
-	<!-- TODO: CLEAR SELECTED COCKTAILS BUTTON -->
 
 	{#if filteredIngredientsList && ingredientsDropdownOpened}
 		<div class="blocker" on:click={handleBlockerClicked} />
@@ -76,7 +76,9 @@
 				placeholder="Search..."
 				bind:value={ingredientSearchText}
 			/>
-			<!-- <div class="clear-selected-ingredients-icon" on:click={} /> -->
+			<button class="clear-selected-ingredients-icon" on:click={clearSelectedIngredients}
+				>Clear</button
+			>
 			{#each filteredIngredientsList as ingredient}
 				<div
 					class="ingredient-container"
@@ -94,9 +96,6 @@
 			{/each}
 		</div>
 	{/if}
-	<!-- {#if ingredientsDropdownOpened}
-		<div class="bottom-blocker" on:click={handleBlockerClicked} />
-	{/if} -->
 </div>
 
 <style>
@@ -120,16 +119,19 @@
 		z-index: 1;
 	}
 
-	.bottom-blocker {
-		position: relative;
-		height: 50vh;
-		width: 100vw;
-		content: ' ';
-		background: rgba(0, 0, 0, 0.5);
-	}
-
 	.ingredients-search-box {
 		display: none;
+	}
+
+	.clear-selected-ingredients-icon {
+		background-color: orangered;
+		border-color: red;
+		max-width: 10vh;
+	}
+
+	.clear-selected-ingredients-icon:hover {
+		background-color: red;
+		border-color: darkred;
 	}
 
 	.ingredients-list-closed {
