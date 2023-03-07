@@ -119,8 +119,13 @@
 		z-index: 1;
 	}
 
-	.ingredients-search-box {
-		display: none;
+	.ingredient-searchbox {
+		border-color: orange;
+		border: 3px;
+		border-radius: 5px;
+		height: 3vh;
+		font-size: medium;
+		padding-left: 5px;
 	}
 
 	.clear-selected-ingredients-icon {
