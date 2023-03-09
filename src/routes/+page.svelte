@@ -41,7 +41,7 @@
 		<h1>Gimme a cocktail!</h1>
 
 		{#await getIngredients()}
-			<p>Loading ingredients</p>
+			<p>Loading ingredients...</p>
 		{:then ingredientsList}
 			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
 		{:catch error}
