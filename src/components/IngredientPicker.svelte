@@ -70,15 +70,17 @@
 	{#if filteredIngredientsList && ingredientsDropdownOpened}
 		<div class="blocker" on:click={handleBlockerClicked} />
 		<div class={ingredientsDropdownOpened ? `ingredients-list-open` : `ingredients-list-closed`}>
-			<input
-				class="ingredient-searchbox"
-				type="text"
-				placeholder="Search..."
-				bind:value={ingredientSearchText}
-			/>
-			<button class="clear-selected-ingredients-icon" on:click={clearSelectedIngredients}
-				>Clear</button
-			>
+			<div class="top-container-elements">
+				<input
+					class="ingredient-searchbox"
+					type="text"
+					placeholder="Search..."
+					bind:value={ingredientSearchText}
+				/>
+				<button class="clear-selected-ingredients-button" on:click={clearSelectedIngredients}
+					>Clear</button
+				>
+			</div>
 			{#each filteredIngredientsList as ingredient}
 				<div
 					class="ingredient-container"
@@ -119,6 +121,15 @@
 		z-index: 1;
 	}
 
+	.top-container-elements {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 5px;
+		max-height: 40px;
+		margin-bottom: 15px;
+	}
+
 	.ingredient-searchbox {
 		border-color: orange;
 		border: 3px;
@@ -128,13 +139,14 @@
 		padding-left: 5px;
 	}
 
-	.clear-selected-ingredients-icon {
+	.clear-selected-ingredients-button {
 		background-color: orangered;
 		border-color: red;
-		max-width: 10vh;
+		/* margin: auto; */
+		margin: 0;
 	}
 
-	.clear-selected-ingredients-icon:hover {
+	.clear-selected-ingredients-button:hover {
 		background-color: red;
 		border-color: darkred;
 	}
@@ -147,7 +159,6 @@
 		position: absolute;
 		transform: translateY(60px);
 		z-index: 1;
-		padding-top: -5px;
 		border: solid 3px;
 		border-color: black;
 		border-radius: 5px;
@@ -167,7 +178,6 @@
 		border-color: orangered;
 		border-radius: 10px;
 		margin-top: 5px;
-		margin-right: 10px;
 		padding: 10px;
 	}
 
