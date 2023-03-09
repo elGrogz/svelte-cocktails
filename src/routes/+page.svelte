@@ -1,12 +1,18 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import IngredientPicker from '../components/IngredientPicker.svelte';
 
-	import type { Cocktail, SelectedIngredients } from '../types/types';
+	import type { Cocktail, Ingredient, SelectedIngredients } from '../types/types';
 	import { getCocktails, getIngredients } from '../utils/api';
 
+	let ingredientsList: Ingredient[] | null;
 	let cocktailList: Cocktail[] | null = null;
 	let selectedIngredients: SelectedIngredients | null = null;
 	let chosenCocktail: Cocktail | null;
+
+	onMount(async () => {
+		ingredientsList = await getIngredients();
+	});
 
 	$: if (cocktailList) {
 		chosenCocktail = getRandomCocktail();
@@ -40,13 +46,19 @@
 	<section class="content-section">
 		<h1>Gimme a cocktail!</h1>
 
-		{#await getIngredients()}
+		<!-- {#await loadIngredients}
 			<p>Loading ingredients...</p>
 		{:then ingredientsList}
 			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
 		{:catch error}
 			<p>{error}</p>
-		{/await}
+		{/await} -->
+
+		{#if ingredientsList}
+			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+		{:else}
+			<p>Loading ingredients</p>
+		{/if}
 
 		<button class="get-cocktail-button" on:click={handleCocktails} disabled={!selectedIngredients}>
 			Find me a cocktail!
