@@ -61,6 +61,8 @@
 			<ChosenCocktail {chosenCocktail} />
 		{/if}
 
+		<!-- button to clear cocktail -->
+
 		<!-- TODO: Animation when found (svelte transition)-->
 		<!-- TODO: Recipe fetched then displayed here -->
 		<!-- TODO: Carousel for alternative recipes -->
