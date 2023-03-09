@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import ChosenCocktail from '../components/ChosenCocktail.svelte';
 	import IngredientPicker from '../components/IngredientPicker.svelte';
 
 	import type { Cocktail, Ingredient, SelectedIngredients } from '../types/types';
@@ -46,14 +47,6 @@
 	<section class="content-section">
 		<h1>Gimme a cocktail!</h1>
 
-		<!-- {#await loadIngredients}
-			<p>Loading ingredients...</p>
-		{:then ingredientsList}
-			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
-		{:catch error}
-			<p>{error}</p>
-		{/await} -->
-
 		{#if ingredientsList}
 			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
 		{:else}
@@ -64,13 +57,9 @@
 			Find me a cocktail!
 		</button>
 
-		<!-- TODO: Move into it's own component -->
-		<div class="cocktail-result">
-			{#if chosenCocktail}
-				<h2>{chosenCocktail.strDrink}</h2>
-				<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
-			{/if}
-		</div>
+		{#if chosenCocktail}
+			<ChosenCocktail {chosenCocktail} />
+		{/if}
 
 		<!-- TODO: Animation when found (svelte transition)-->
 		<!-- TODO: Recipe fetched then displayed here -->
