@@ -34,8 +34,6 @@
 		filteredIngredientsList = getFilteredIngredients();
 	}
 
-	// $: console.log(filteredIngredientsList);
-
 	const dispatcher = createEventDispatcher();
 
 	function sendIngredientEvent() {

@@ -41,9 +41,15 @@
 
 		return cocktailToReturn;
 	};
+
+	const handleCocktailsCleared = () => {
+		cocktailList = null;
+		chosenCocktail = null;
+	};
 </script>
 
 <div class="main">
+	<!-- {@debug cocktailList} -->
 	<section class="top-section">
 		<!-- button to clear cocktail -->
 
@@ -89,7 +95,7 @@
 		</button>
 
 		{#if chosenCocktail}
-			<ChosenCocktail {chosenCocktail} />
+			<ChosenCocktail {chosenCocktail} on:cocktailsCleared={handleCocktailsCleared} />
 		{/if}
 	</div>
 </div>
