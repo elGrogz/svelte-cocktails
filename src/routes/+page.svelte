@@ -57,10 +57,6 @@
 			Find me a cocktail!
 		</button>
 
-		{#if chosenCocktail}
-			<ChosenCocktail {chosenCocktail} />
-		{/if}
-
 		<!-- button to clear cocktail -->
 
 		<!-- TODO: Animation when found (svelte transition)-->
@@ -91,6 +87,9 @@
 				/>
 			</svg>
 		</div>
+		{#if chosenCocktail}
+			<ChosenCocktail {chosenCocktail} />
+		{/if}
 	</section>
 </div>
 
@@ -152,11 +151,8 @@
 		margin-top: 10px;
 	}
 
-	.cocktail-result {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-top: 20px;
+	.chosen-cocktail-container {
+		position: absolute;
 	}
 
 	.custom-shape-divider-top-1677523311 {
@@ -166,6 +162,7 @@
 		width: 100%;
 		overflow: hidden;
 		line-height: 0;
+		z-index: -1;
 	}
 
 	.custom-shape-divider-top-1677523311 svg {
