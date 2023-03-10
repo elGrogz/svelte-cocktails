@@ -10,7 +10,7 @@
 	out:fly={{ x: -300, duration: 1000 }}
 	class="cocktail-result"
 >
-	<h2>{chosenCocktail.strDrink}</h2>
+	<h1>{chosenCocktail.strDrink}</h1>
 	<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
 </div>
 
@@ -19,6 +19,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		transform: translateY(60px);
+		/* transform: translateY(50px); */
+	}
+
+	h1 {
+		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: xx-large;
 	}
 </style>

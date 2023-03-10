@@ -43,20 +43,8 @@
 	};
 </script>
 
-<div>
-	<section class="content-section">
-		<h1>Gimme a cocktail!</h1>
-
-		{#if ingredientsList}
-			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
-		{:else}
-			<p>Loading ingredients</p>
-		{/if}
-
-		<button class="get-cocktail-button" on:click={handleCocktails} disabled={!selectedIngredients}>
-			Find me a cocktail!
-		</button>
-
+<div class="main">
+	<section class="top-section">
 		<!-- button to clear cocktail -->
 
 		<!-- TODO: Animation when found (svelte transition)-->
@@ -87,10 +75,23 @@
 				/>
 			</svg>
 		</div>
+	</section>
+	<div class="content-section">
+		<h1>Gimme a cocktail!</h1>
+		{#if ingredientsList}
+			<IngredientPicker {ingredientsList} on:ingredientClicked={handleIngredientListChanged} />
+		{:else}
+			<p>Loading ingredients</p>
+		{/if}
+
+		<button class="get-cocktail-button" on:click={handleCocktails} disabled={!selectedIngredients}>
+			Find me a cocktail!
+		</button>
+
 		{#if chosenCocktail}
 			<ChosenCocktail {chosenCocktail} />
 		{/if}
-	</section>
+	</div>
 </div>
 
 <style>
@@ -133,8 +134,15 @@
 		min-height: 100px;
 	}
 
-	.content-section {
+	.top-section {
 		background-color: #f5a623;
+	}
+
+	.content-section {
+		position: absolute;
+		top: 20px;
+		left: 0;
+		right: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -149,10 +157,6 @@
 
 	.get-cocktail-button {
 		margin-top: 10px;
-	}
-
-	.chosen-cocktail-container {
-		position: absolute;
 	}
 
 	.custom-shape-divider-top-1677523311 {
