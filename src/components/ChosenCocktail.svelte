@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import type { Cocktail } from '../types/types';
 	import { getCocktailDetails } from '../utils/api';
+	import CocktailDetails from './CocktailDetails.svelte';
 
 	export let chosenCocktail: Cocktail;
 
@@ -21,7 +22,7 @@
 	{#await getCocktailDetails(chosenCocktail)}
 		<p>Loading cocktail details...</p>
 	{:then details}
-		<p>{details.strInstructions}</p>
+		<CocktailDetails {details} />
 	{:catch}
 		<p>Could not load cocktail details!</p>
 	{/await}
