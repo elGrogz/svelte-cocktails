@@ -130,6 +130,13 @@
 		background-color: grey;
 	}
 
+	:global(img) {
+		border-radius: 10px;
+		border: solid 2px;
+		border-color: black;
+		border-radius: 5px;
+	}
+
 	h1 {
 		font-family: 'Satisfy', 'Brush Script MT';
 		font-size: xx-large;
@@ -152,13 +159,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-	}
-
-	img {
-		border-radius: 10px;
-		border: solid 2px;
-		border-color: black;
-		border-radius: 5px;
 	}
 
 	.get-cocktail-button {
