@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import type { Cocktail } from '../types/types';
+	import { getCocktailDetails } from '../utils/api';
 
 	export let chosenCocktail: Cocktail;
 
@@ -16,6 +17,14 @@
 	<h1>{chosenCocktail.strDrink}</h1>
 	<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
 	<button class="clear-cocktail-button" on:click={handleClearCocktail}>Clear cocktail</button>
+
+	{#await getCocktailDetails(chosenCocktail)}
+		<p>Loading cocktail details...</p>
+	{:then details}
+		<p>Loaded!</p>
+	{:catch}
+		<p>Could not load details</p>
+	{/await}
 </div>
 
 <style>

@@ -31,17 +31,28 @@ export const getCocktails = async (
 
 		return cocktailObject.drinks;
 	}
-	console.log('Ingredient TO FETCH 3: ', ingredients.selectedIngredients[0]);
 
 	try {
 		const cocktailsResponse = await fetch(
 			`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredients.selectedIngredients[0]}`
 		);
-		console.log('RESPONSE: ', cocktailsResponse);
 		const cocktailObject = await cocktailsResponse.json();
-		console.log({ cocktailObject });
 		return cocktailObject.drinks as Cocktail[] | null;
 	} catch (error) {
 		throw new Error('Error getting ingredients list');
+	}
+};
+
+export const getCocktailDetails = async (cocktail: Cocktail) => {
+	try {
+		const detailsResponse = await fetch(
+			`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktail.idDrink}`
+		);
+		console.log('RESPONSE: ', detailsResponse);
+		const detailsObject = await detailsResponse.json();
+		console.log({ detailsObject });
+		// return detailsObject;
+	} catch (error) {
+		throw new Error('Error getting details list');
 	}
 };
