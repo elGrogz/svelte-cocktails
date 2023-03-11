@@ -69,7 +69,3 @@ export interface Drink {
 export interface DetailsObject {
 	drinks: Drink[];
 }
-
-export interface RootDetailsObject {
-	detailsObject: DetailsObject;
-}

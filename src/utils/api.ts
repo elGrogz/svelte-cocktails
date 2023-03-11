@@ -1,4 +1,10 @@
-import type { Ingredient, Cocktail, SelectedIngredients } from '../types/types';
+import type {
+	Ingredient,
+	Cocktail,
+	SelectedIngredients,
+	RootDetailsObject,
+	DetailsObject
+} from '../types/types';
 import { getMockIngredients, getMockCocktails } from '../../tests/utils/mockResponses';
 
 import { PUBLIC_MOCK } from '$env/static/public';
@@ -48,10 +54,8 @@ export const getCocktailDetails = async (cocktail: Cocktail) => {
 		const detailsResponse = await fetch(
 			`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktail.idDrink}`
 		);
-		console.log('RESPONSE: ', detailsResponse);
-		const detailsObject = await detailsResponse.json();
-		console.log({ detailsObject });
-		// return detailsObject;
+		const detailsObject = (await detailsResponse.json()) as DetailsObject;
+		return detailsObject.drinks[0];
 	} catch (error) {
 		throw new Error('Error getting details list');
 	}

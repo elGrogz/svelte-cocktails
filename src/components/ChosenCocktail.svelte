@@ -21,9 +21,9 @@
 	{#await getCocktailDetails(chosenCocktail)}
 		<p>Loading cocktail details...</p>
 	{:then details}
-		<p>Loaded!</p>
+		<p>{details.strInstructions}</p>
 	{:catch}
-		<p>Could not load details</p>
+		<p>Could not load cocktail details!</p>
 	{/await}
 </div>
 
