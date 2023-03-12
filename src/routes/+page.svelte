@@ -130,6 +130,19 @@
 		background-color: grey;
 	}
 
+	:global(.clear-button) {
+		font-size: smaller;
+		background-color: orangered;
+		border-color: red;
+		/* margin: auto; */
+		margin: 0;
+	}
+
+	:global(.clear-button:hover) {
+		background-color: red;
+		border-color: darkred;
+	}
+
 	:global(img) {
 		border-radius: 10px;
 		border: solid 2px;
@@ -137,9 +150,14 @@
 		border-radius: 5px;
 	}
 
-	h1 {
+	:global(h1) {
 		font-family: 'Satisfy', 'Brush Script MT';
 		font-size: xx-large;
+	}
+
+	:global(h2) {
+		font-family: 'Satisfy', 'Brush Script MT';
+		font-size: larger;
 	}
 
 	section {

@@ -4,10 +4,14 @@
 	export let details: Drink;
 </script>
 
-<p class="instructions">{details.strInstructions}</p>
+<div class="instructions">
+	<h2>Instructions</h2>
+	<p>{details.strInstructions}</p>
+</div>
 
 <style>
 	.instructions {
 		max-width: 50vw;
+		text-align: center;
 	}
 </style>

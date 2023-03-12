@@ -75,8 +75,9 @@
 					placeholder="Search..."
 					bind:value={ingredientSearchText}
 				/>
-				<button class="clear-selected-ingredients-button" on:click={clearSelectedIngredients}
-					>Clear</button
+				<button
+					class="clear-selected-ingredients-button clear-button"
+					on:click={clearSelectedIngredients}>Clear</button
 				>
 			</div>
 			{#each filteredIngredientsList as ingredient}
@@ -135,18 +136,6 @@
 		height: 3vh;
 		font-size: medium;
 		padding-left: 5px;
-	}
-
-	.clear-selected-ingredients-button {
-		background-color: orangered;
-		border-color: red;
-		/* margin: auto; */
-		margin: 0;
-	}
-
-	.clear-selected-ingredients-button:hover {
-		background-color: red;
-		border-color: darkred;
 	}
 
 	.ingredients-list-closed {

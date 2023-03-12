@@ -17,7 +17,9 @@
 <div transition:fade={{ duration: 1000 }} class="cocktail-result">
 	<h1>{chosenCocktail.strDrink}</h1>
 	<img src={chosenCocktail.strDrinkThumb} alt={chosenCocktail.strDrink} width="200" />
-	<button class="clear-cocktail-button" on:click={handleClearCocktail}>Clear cocktail</button>
+	<button class="clear-cocktail-button clear-button" on:click={handleClearCocktail}
+		>Clear cocktail</button
+	>
 
 	{#await getCocktailDetails(chosenCocktail)}
 		<p>Loading cocktail details...</p>
