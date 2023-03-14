@@ -2,12 +2,12 @@
 	import type { Drink } from '../types/types';
 
 	export let details: Drink;
-	let ingredientsList: any = {};
+	let ingredientsList: any = [];
 
 	$: buildIngredientsList(details);
 
 	function buildIngredientsList(detailObject: any) {
-		const filteredObj = {};
+		const filteredObj = [];
 
 		const filteredIngredients = Object.keys(detailObject).filter(
 			(key) => key.includes('strIngredient') && detailObject[key] !== null
@@ -20,18 +20,17 @@
 		if (filteredIngredients.length === filteredAmounts.length) {
 			for (let index = 0; index < filteredIngredients.length; index++) {
 				const keyString = 'ingredient' + (index + 1);
-				filteredObj[keyString] = {
-					[filteredIngredients[index]]: detailObject[filteredIngredients[index]],
-					[filteredAmounts[index]]: detailObject[filteredAmounts[index]]
-				};
+
+				filteredObj.push({
+					ingredient: detailObject[filteredIngredients[index]],
+					amount: detailObject[filteredAmounts[index]]
+				});
 			}
 		}
 
 		ingredientsList = filteredObj;
 	}
 </script>
-
-{@debug ingredientsList}
 
 <div class="details-container">
 	<div class="instructions">
@@ -40,11 +39,10 @@
 	</div>
 	<div class="instructions">
 		<h2>Ingredients</h2>
-		<p>{details.strIngredient1}</p>
-		<p>{details.strIngredient2}</p>
-		<p>{details.strIngredient3}</p>
-		<p>{details.strIngredient4}</p>
-		<p>{details.strIngredient5}</p>
+
+		{#each ingredientsList as detail}
+			<p>{detail.amount} {detail.ingredient}</p>
+		{/each}
 	</div>
 </div>
 
