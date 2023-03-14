@@ -1,7 +1,41 @@
 <script lang="ts">
+	import { object_without_properties } from 'svelte/internal';
 	import type { Drink } from '../types/types';
 
 	export let details: Drink;
+	let ingredientsList: any;
+
+	$: {
+		buildIngredientsList(details);
+	}
+
+	function buildIngredientsList(detailObject: any) {
+		const filteredObj = {};
+
+		const filteredIngredients = Object.keys(detailObject).filter(
+			(key) => key.includes('strIngredient') && detailObject[key] !== null
+		);
+
+		for (let index = 0; index < filteredIngredients.length; index++) {
+			const keyString = 'ingredient' + (index + 1);
+			filteredObj[keyString] = {
+				[filteredIngredients[index]]: detailObject[filteredIngredients[index]]
+			};
+		}
+
+		console.log(filteredObj);
+
+		// let obj = {};
+
+		// Object.keys(detailObject).find((key: string, ) => {
+		// 	if (key.includes('strIngredient')) {
+		// 		// Object.assign(obj, { key: null });
+		// 		console.log(key);
+		// 	}
+		// });
+
+		// console.log(obj);
+	}
 </script>
 
 <div class="details-container">
