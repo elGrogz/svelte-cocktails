@@ -1,10 +1,16 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { Drink } from '../types/types';
 
 	export let details: Drink;
 	let ingredientsList: any = [];
 
-	$: buildIngredientsList(details);
+	onMount(() => {
+		buildIngredientsList(details);
+		console.log(ingredientsList);
+	});
+
+	// $: buildIngredientsList(details);
 
 	function buildIngredientsList(detailObject: any) {
 		const filteredObj = [];
