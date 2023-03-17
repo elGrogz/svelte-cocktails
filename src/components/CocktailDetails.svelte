@@ -43,7 +43,7 @@
 		<h2>Instructions</h2>
 		<p>{details.strInstructions}</p>
 	</div>
-	<div class="instructions">
+	<div class="ingredients">
 		<h2>Ingredients</h2>
 
 		{#each ingredientsList as detail}
@@ -53,23 +53,48 @@
 </div>
 
 <style>
-	.details-container {
-		display: flex;
+	@media (min-width: 401px) {
+		.details-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
+
+		.instructions {
+			width: 50%;
+			text-align: center;
+			padding-right: 10px;
+		}
+
+		.ingredients {
+			width: 50%;
+			padding-left: 10px;
+		}
 	}
 
-	.instructions {
-		margin-left: 20px;
-		width: 50%;
-		text-align: center;
-	}
+	@media (max-width: 400px) {
+		.details-container {
+			flex-direction: column;
+			align-items: center;
+		}
 
-	.instructions {
-		margin-right: 20px;
-		max-width: 50%;
-		text-align: center;
+		.instructions {
+			width: 80%;
+			text-align: center;
+			margin: auto;
+		}
+
+		.ingredients {
+			width: 80%;
+			text-align: center;
+			margin: auto;
+		}
 	}
 
 	p {
 		margin: auto;
+		font-size: large;
 	}
 </style>
