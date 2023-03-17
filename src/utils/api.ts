@@ -1,10 +1,4 @@
-import type {
-	Ingredient,
-	Cocktail,
-	SelectedIngredients,
-	RootDetailsObject,
-	DetailsObject
-} from '../types/types';
+import type { Ingredient, Cocktail, SelectedIngredients, DetailsObject } from '../types/types';
 import { getMockIngredients, getMockCocktails } from '../../tests/utils/mockResponses';
 
 import { PUBLIC_MOCK } from '$env/static/public';
