@@ -7,10 +7,7 @@
 
 	onMount(() => {
 		buildIngredientsList(details);
-		console.log(ingredientsList);
 	});
-
-	// $: buildIngredientsList(details);
 
 	function buildIngredientsList(detailObject: any) {
 		const filteredObj = [];
@@ -23,15 +20,19 @@
 			(key) => key.includes('strMeasure') && detailObject[key] !== null
 		);
 
-		if (filteredIngredients.length === filteredAmounts.length) {
-			for (let index = 0; index < filteredIngredients.length; index++) {
-				const keyString = 'ingredient' + (index + 1);
+		for (let index = 0; index < filteredIngredients.length; index++) {
+			const ingredient = detailObject[filteredIngredients[index]]
+				? detailObject[filteredIngredients[index]]
+				: '';
 
-				filteredObj.push({
-					ingredient: detailObject[filteredIngredients[index]],
-					amount: detailObject[filteredAmounts[index]]
-				});
-			}
+			const amount = detailObject[filteredAmounts[index]]
+				? detailObject[filteredAmounts[index]]
+				: '';
+
+			filteredObj.push({
+				ingredient: ingredient,
+				amount: amount
+			});
 		}
 
 		ingredientsList = filteredObj;
