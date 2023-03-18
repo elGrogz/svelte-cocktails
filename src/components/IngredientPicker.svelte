@@ -43,7 +43,6 @@
 	}
 
 	function handleIngredientClick(ingredient: Ingredient) {
-		console.log('ingredient: ', ingredient.strIngredient1);
 		if (selectedIngredients?.includes(ingredient.strIngredient1)) {
 			const ingredientIndex = selectedIngredients.indexOf(ingredient.strIngredient1);
 			selectedIngredients.splice(ingredientIndex, 1);
@@ -60,9 +59,6 @@
 	<button class="ingredient-dropdown-button" on:click={handleListIngredientsClick}
 		>List of ingredients</button
 	>
-
-	<!-- {@debug ingredientSearchText} -->
-
 	<!-- TODO: better shadow effect for boxes -->
 
 	{#if filteredIngredientsList && ingredientsDropdownOpened}
